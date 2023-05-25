@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="mt-5">
-      <TodoHeader :addItem="addItem"/>
+      <TodoHeader @addItem="addItem"/>
       <TodoLists :todos="todos" :updateItem="updateItem" :removeItem="removeItem"/>
-      <TodoFooter :todos="todos" :removeAlldone="removeAlldone" :setAll="setAll" />
+      <TodoFooter :todos="todos" @removeAlldone="removeAlldone" @setAll="setAll" />
     </div>
   </div>
 </template>

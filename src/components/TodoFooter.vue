@@ -15,6 +15,7 @@
 <script>
     export default {
         name: 'TodoFooter',
+        props: ['todos'],
         data() {
             return {
                 'checkAll': false
@@ -25,7 +26,7 @@
             removeDone(){
                 if(confirm("是否刪除已完成項目"))
                 {
-                    this.removeAlldone()
+                    this.$emit('removeAlldone')
                 }
                 return
             }
@@ -53,11 +54,10 @@
                     return this.todoTotal===this.doneTotal
                 },
                 set(value){
-                    this.setAll(value)
+                    this.$emit('setAll',value)
                 }
             }
-        },
-        props: ['todos','removeAlldone','setAll']
+        }
     }
 </script>
 

@@ -18,13 +18,12 @@
                 //若為空不處理
                 if(e.target.value=="") return
                 //新增項目
-                this.addItem(e.target.value)
+                this.$emit('addItem',e.target.value)
                 //清空輸入欄
                 e.target.value = ""
                 e.target.autofocus
             }
-        },
-        props:['addItem']
+        }
     }
 </script>
 
