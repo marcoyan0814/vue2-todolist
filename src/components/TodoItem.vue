@@ -11,18 +11,28 @@
                 {{todo.title}}
             </label>
         </div>
-        <div class="float-right"><button class="btn btn-danger hide">刪除項目</button></div>
+        <div class="float-right">
+            <button class="btn btn-danger hide" @click="remove(todo.id)">刪除項目</button>
+        </div>
     </li>
 </template>
 
 <script>
     export default {
         name: 'TodoItem',
-        props: ['todo','updateItem'],
+        props: ['todo','updateItem','removeItem'],
         methods: {
             //更新狀態
             update(key){
                 this.updateItem(key)
+            },
+            //移除項目
+            remove(key){
+                if(confirm("是否確認刪除?"))
+                {
+                    this.removeItem(key)
+                }
+                return
             }
         },
     }

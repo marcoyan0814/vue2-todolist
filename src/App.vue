@@ -2,7 +2,7 @@
   <div class="container">
     <div class="mt-5">
       <TodoHeader :addItem="addItem"/>
-      <TodoLists :todos="todos" :updateItem="updateItem"/>
+      <TodoLists :todos="todos" :updateItem="updateItem" :removeItem="removeItem"/>
       <TodoFooter :todos="todos"/>
     </div>
   </div>
@@ -49,6 +49,10 @@
             todo.done = !todo.done 
           }
         })
+      },
+      //刪除項目
+      removeItem(key){
+        this.todos = this.todos.filter(todo => todo.id!==key)
       }
     },
     mounted(){

@@ -4,7 +4,13 @@
             <span class="text-primary">目前待辦清單</span>
         </h4>
         <ul class="list-group mb-3">
-            <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" :updateItem="updateItem"/>
+            <TodoItem 
+                v-for="todo in todos" 
+                :key="todo.id" 
+                :todo="todo" 
+                :updateItem="updateItem"
+                :removeItem="removeItem"
+            />
         </ul>
     </div>
 </template>
@@ -17,7 +23,7 @@
         components: {
             TodoItem
         },
-        props: ['todos','updateItem']
+        props: ['todos','updateItem','removeItem']
     }
 </script>
 
