@@ -3,7 +3,7 @@
     <div class="mt-5">
       <TodoHeader :addItem="addItem"/>
       <TodoLists :todos="todos"/>
-      <TodoFooter/>
+      <TodoFooter :todos="todos"/>
     </div>
   </div>
 </template>
