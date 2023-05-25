@@ -25,7 +25,8 @@
     },
     data() {
       return {
-        'todos':[
+        // 取得本機資料，若無則返回範例
+        'todos': JSON.parse(localStorage.getItem('todos')) || [
           {id: nanoid(), title: "念書", done: false},
           {id: nanoid(), title: "打球", done: true},
           {id: nanoid(), title: "買菜", done: false},
@@ -63,6 +64,15 @@
         this.todos.forEach((todo) => {
             todo.done = (value)?true:false
         })
+      }
+    },
+    watch: {
+      //設定監聽，寫入localStorage
+      todos:{
+        deep:true,
+        handler(e){
+          localStorage.setItem('todos',JSON.stringify(e))
+        }
       }
     },
     mounted(){
