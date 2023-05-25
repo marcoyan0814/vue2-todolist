@@ -7,7 +7,7 @@
         </div>
         <div class="float-right">
             <span class="mx-3"> 已完成 {{ doneTotal }} 筆 / 總共有 {{ todoTotal }} 筆</span>
-            <button type="button" class="btn btn-danger">刪除已完成項目</button>
+            <button type="button" class="btn btn-danger" @click="removeDone">刪除已完成項目</button>
         </div>
     </div>
 </template>
@@ -15,6 +15,16 @@
 <script>
     export default {
         name: 'TodoFooter',
+        methods: {
+            //刪除已完成項目
+            removeDone(){
+                if(confirm("是否刪除已完成項目"))
+                {
+                    this.removeAlldone()
+                }
+                return
+            }
+        },
         computed: {
             //取得目前總筆數
             todoTotal(){
@@ -32,7 +42,7 @@
                 return this.todos.reduce((pre,current) => (pre += (current.done)??1),0);
             }
         },
-        props: ['todos']
+        props: ['todos','removeAlldone']
     }
 </script>
 

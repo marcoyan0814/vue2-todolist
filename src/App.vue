@@ -3,7 +3,7 @@
     <div class="mt-5">
       <TodoHeader :addItem="addItem"/>
       <TodoLists :todos="todos" :updateItem="updateItem" :removeItem="removeItem"/>
-      <TodoFooter :todos="todos"/>
+      <TodoFooter :todos="todos" :removeAlldone="removeAlldone"/>
     </div>
   </div>
 </template>
@@ -53,6 +53,10 @@
       //刪除項目
       removeItem(key){
         this.todos = this.todos.filter(todo => todo.id!==key)
+      },
+      //刪除已完成項目
+      removeAlldone(){
+        this.todos = this.todos.filter(todo => todo.done!==true)
       }
     },
     mounted(){
