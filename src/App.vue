@@ -2,7 +2,7 @@
   <div class="container">
     <div class="mt-5">
       <TodoHeader :addItem="addItem"/>
-      <TodoLists :todos="todos"/>
+      <TodoLists :todos="todos" :updateItem="updateItem"/>
       <TodoFooter :todos="todos"/>
     </div>
   </div>
@@ -41,6 +41,14 @@
           done: false
         }
         this.todos.unshift(item)
+      },
+      //更新項目狀態
+      updateItem(key){
+        this.todos.forEach((todo) => {
+          if (todo.id===key){ 
+            todo.done = !todo.done 
+          }
+        })
       }
     },
     mounted(){
