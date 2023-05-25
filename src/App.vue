@@ -76,7 +76,7 @@
       }
     },
     mounted(){
-      console.log(this.todos)
+      //console.log(this.todos)
     }
   };
 </script>
