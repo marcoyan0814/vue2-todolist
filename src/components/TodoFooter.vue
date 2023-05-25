@@ -1,8 +1,8 @@
 <template>
-    <div class="p-3 list-group-item d-flex justify-content-between lh-sm">
+    <div class="p-3 list-group-item d-flex justify-content-between lh-sm" v-if="todoTotal>0">
         <div class="float-left form-check my-auto">
             <label>
-                <input type="checkbox" class="form-check-input"> 全部完成/全部未完成
+                <input type="checkbox" class="form-check-input" v-model="isAll"> 勾選設定全部完成/全部未完成
             </label>
         </div>
         <div class="float-right">
@@ -15,6 +15,11 @@
 <script>
     export default {
         name: 'TodoFooter',
+        data() {
+            return {
+                'checkAll': false
+            }
+        },
         methods: {
             //刪除已完成項目
             removeDone(){
@@ -40,9 +45,19 @@
                 // });
                 // return i
                 return this.todos.reduce((pre,current) => (pre += (current.done)??1),0);
+            },
+            //檢查全選/非全選是否勾
+            isAll:{
+                get(){
+                    //如果總數等於完成總數則勾選
+                    return this.todoTotal===this.doneTotal
+                },
+                set(value){
+                    this.setAll(value)
+                }
             }
         },
-        props: ['todos','removeAlldone']
+        props: ['todos','removeAlldone','setAll']
     }
 </script>
 

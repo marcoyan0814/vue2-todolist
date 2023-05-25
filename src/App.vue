@@ -3,7 +3,7 @@
     <div class="mt-5">
       <TodoHeader :addItem="addItem"/>
       <TodoLists :todos="todos" :updateItem="updateItem" :removeItem="removeItem"/>
-      <TodoFooter :todos="todos" :removeAlldone="removeAlldone"/>
+      <TodoFooter :todos="todos" :removeAlldone="removeAlldone" :setAll="setAll" />
     </div>
   </div>
 </template>
@@ -57,6 +57,12 @@
       //刪除已完成項目
       removeAlldone(){
         this.todos = this.todos.filter(todo => todo.done!==true)
+      },
+      //設定全已完成或全未完成
+      setAll(value){
+        this.todos.forEach((todo) => {
+            todo.done = (value)?true:false
+        })
       }
     },
     mounted(){
