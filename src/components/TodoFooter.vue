@@ -13,6 +13,8 @@
 </template>
 
 <script>
+    //載入 sweetalert2
+    import Swal from 'sweetalert2'
     export default {
         name: 'TodoFooter',
         props: ['todos'],
@@ -24,11 +26,19 @@
         methods: {
             //刪除已完成項目
             removeDone(){
-                if(confirm("是否刪除已完成項目"))
-                {
-                    this.$emit('removeAlldone')
-                }
-                return
+                Swal.fire({
+                    icon: 'warning',
+                    title: '是否刪除已完成項目?',
+                    showCancelButton: true,
+                    confirmButtonText: '確認刪除',
+                    cancelButtonText: '取消操作',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.$emit('removeAlldone')    
+                    }
+                })
             }
         },
         computed: {

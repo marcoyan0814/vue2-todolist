@@ -29,6 +29,8 @@
 </template>
 
 <script>
+    //載入 sweetalert2
+    import Swal from 'sweetalert2'
     export default {
         name: 'TodoItem',
         props: ['todo'],
@@ -39,11 +41,19 @@
             },
             //移除項目
             remove(key){
-                if(confirm("是否確認刪除?"))
-                {
-                    this.$bus.$emit('removeItem',key)
-                }
-                return
+                Swal.fire({
+                    icon: 'warning',
+                    title: '是否刪除此項目?',
+                    showCancelButton: true,
+                    confirmButtonText: '確認刪除',
+                    cancelButtonText: '取消操作',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.$bus.$emit('removeItem',key)  
+                    }
+                })
             },
             //點擊變更項目
             edit(todo){
