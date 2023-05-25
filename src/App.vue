@@ -59,6 +59,14 @@
       removeAlldone(){
         this.todos = this.todos.filter(todo => todo.done!==true)
       },
+      //修改項目
+      updateTitle(key, title){
+        this.todos.forEach((todo) => {
+          if (todo.id===key){ 
+            todo.title = title
+          }
+        })
+      },
       //設定全已完成或全未完成
       setAll(value){
         this.todos.forEach((todo) => {
@@ -81,11 +89,13 @@
       this.$bus.$on('updateItem',this.updateItem);
       //監聽刪除事件
       this.$bus.$on('removeItem',this.removeItem);
+      //監聽修改項目事件
+      this.$bus.$on('updateTitle',this.updateTitle)
     },
     beforeDestroy(){
       //如果要註銷就刪除監聽事件
       //更新狀態事件及刪除項目事件
-      this.$bus.$off(['updateItem','removeItem']);
+      this.$bus.$off(['updateItem','removeItem','updateTitle']);
     }
   };
 </script>
