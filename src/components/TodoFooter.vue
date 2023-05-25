@@ -1,12 +1,12 @@
 <template>
-    <div class="p-3 list-group-item d-flex justify-content-between lh-sm" v-if="todoTotal>0">
-        <div class="float-left form-check my-auto">
+    <div class="p-3 list-group-item d-md-flex d-sm-flex justify-content-between lh-sm" v-if="todoTotal>0">
+        <div class="form-check my-3 text-center">
             <label>
                 <input type="checkbox" class="form-check-input" v-model="isAll"> 勾選設定全部完成/全部未完成
             </label>
         </div>
-        <div class="float-right">
-            <span class="mx-3"> 已完成 {{ doneTotal }} 筆 / 總共有 {{ todoTotal }} 筆</span>
+        <div class="text-center">
+            <span class="mx-3"> 已完成 {{ doneTotal }} 筆 / 共有 {{ todoTotal }} 筆</span>
             <button type="button" class="btn btn-danger" @click="removeDone">刪除已完成項目</button>
         </div>
     </div>
