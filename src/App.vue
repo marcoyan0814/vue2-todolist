@@ -2,7 +2,7 @@
   <div class="container">
     <div class="mt-5">
       <TodoHeader @addItem="addItem"/>
-      <TodoLists :todos="todos" :updateItem="updateItem" :removeItem="removeItem"/>
+      <TodoLists :todos="todos"/>
       <TodoFooter :todos="todos" @removeAlldone="removeAlldone" @setAll="setAll" />
     </div>
   </div>
@@ -77,6 +77,15 @@
     },
     mounted(){
       //console.log(this.todos)
+      //監聽更新狀態事件
+      this.$bus.$on('updateItem',this.updateItem);
+      //監聽刪除事件
+      this.$bus.$on('removeItem',this.removeItem);
+    },
+    beforeDestroy(){
+      //如果要註銷就刪除監聽事件
+      //更新狀態事件及刪除項目事件
+      this.$bus.$off(['updateItem','removeItem']);
     }
   };
 </script>

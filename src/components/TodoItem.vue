@@ -20,17 +20,17 @@
 <script>
     export default {
         name: 'TodoItem',
-        props: ['todo','updateItem','removeItem'],
+        props: ['todo'],
         methods: {
             //更新狀態
             update(key){
-                this.updateItem(key)
+                this.$bus.$emit('updateItem',key)
             },
             //移除項目
             remove(key){
                 if(confirm("是否確認刪除?"))
                 {
-                    this.removeItem(key)
+                    this.$bus.$emit('removeItem',key)
                 }
                 return
             }

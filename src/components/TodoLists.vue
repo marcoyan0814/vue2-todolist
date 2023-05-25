@@ -8,8 +8,6 @@
                 v-for="todo in todos" 
                 :key="todo.id" 
                 :todo="todo" 
-                :updateItem="updateItem"
-                :removeItem="removeItem"
             />
         </ul>
     </div>
@@ -20,10 +18,10 @@
     import TodoItem from './TodoItem'
     export default {
         name: 'TodoLists',
+        props: ['todos'],
         components: {
             TodoItem
-        },
-        props: ['todos','updateItem','removeItem']
+        }
     }
 </script>
 
